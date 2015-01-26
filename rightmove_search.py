@@ -12,8 +12,7 @@ def main():
     
     search_home = config["search_home"]
     output_dir = config["output_dir"]
-    
-    keywords = ['acre']
+    keywords = config["keywords"]
     root_url = 'http://www.rightmove.co.uk'
 
     output_file = "property_search_results"
