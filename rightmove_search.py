@@ -1,4 +1,6 @@
 import urllib2
+from os import listdir
+from os.path import isfile, join
 import shutil
 import time
 import hashlib
@@ -139,6 +141,12 @@ def main():
         text_file.write('</tbody></table>')
         text_file.write('</div></div>')
         text_file.write(foot_html)
+        
+    # Create the HTML index file
+    results_files = [ f for f in listdir(output_dir) if isfile(join(output_dir,f)) ]
+    with open(output_dir + "index.html", "w") as text_file:
+        for result_file in results_files:
+            text_file.write('<p><a href="' + result_file + '">' + result_file + "</a></p>")
 
 def search(text,n):
     #Searches for text, and retrieves n words either side of the text, which are retuned seperatly
