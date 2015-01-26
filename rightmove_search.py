@@ -47,7 +47,7 @@ def main():
         text_file.write(head_html)
         text_file.write('<div class="row"><div class="col-md-12">')
         text_file.write("<h1>" + search_home[0] + "</h1>")
-        text_file.write("<h2>Found the following properties with the keywords you are looking for</h2>")
+        text_file.write("<h2>The following property's descriptions contain your search terms</h2>")
         text_file.write("<p><a href='" + root_url + search_home[1] + "' target='_blank'>This is the original search page</a></p>")
         text_file.write('</div></div>')
         
