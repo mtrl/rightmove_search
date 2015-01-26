@@ -5,9 +5,12 @@ import webbrowser
 from BeautifulSoup import BeautifulSoup
 
 def main():
-#    search_home = ['10 mile radius Shrewsbury 28k2', '/property-for-sale/find.html?locationIdentifier=REGION%5E1208&maxPrice=280000&minBedrooms=3&displayPropertyType=houses&oldDisplayPropertyType=houses&numberOfPropertiesPerPage=50&radius=10.0&googleAnalyticsChannel=buying']
-    search_home = ['north and west of Shrewsbury 4 beds to 375k', '/property-for-sale/find.html?locationIdentifier=USERDEFINEDAREA%5E%7B%22id%22%3A2707198%7D&maxPrice=375000&minBedrooms=4&displayPropertyType=houses&oldDisplayPropertyType=houses&primaryDisplayPropertyType=houses&oldPrimaryDisplayPropertyType=houses&sortType=&numberOfPropertiesPerPage=50']
-    output_dir = "/Users/mark/Dropbox/rightmove_search/"
+    # Import settings
+    config = {}
+    execfile("settings.conf", config)
+    
+    search_home = config["search_home"]
+    output_dir = config["output_dir"]
     
     keywords = ['acre']
     root_url = 'http://www.rightmove.co.uk'
@@ -107,12 +110,11 @@ def main():
             j = j + 1
         i = i + 1
 
-    #save the results
     print "---"
     print "Done. Found " + str(len(property_results)) + " properties. I've written the results to " + output_dir
 
 def search(text,n):
-    '''Searches for text, and retrieves n words either side of the text, which are retuned seperatly'''
+    #Searches for text, and retrieves n words either side of the text, which are retuned seperatly
     word = r"\W*([\w]+)"
     groups = re.search(r'{}\W*{}{}'.format(word*n,'place',word*n),t).groups()
     return groups[:n],groups[n:]
@@ -120,4 +122,5 @@ def search(text,n):
 def sanitise_filename(filename):
     return "".join([c for c in filename if c.isalpha() or c.isdigit() or c==' ']).rstrip().replace(" ", "_")
 
-main()
+if __name__ == "__main__":
+    main()

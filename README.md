@@ -10,7 +10,7 @@ Be nice and keep the sleep time high. The rightmove servers will block your IP i
 Install requirements with `pip install -r requirements.txt`
 
 ### Usage
-Set the search_home tuple and output_dir variables to values that are right for you.
+Copy `settings.config.sample` to `settings.conf` and set the search_home tuple and output_dir variables in `settings.conf` to values that are right for you.
 
 `cd` to the project directory and run with
 `python rightmove_search.py`
