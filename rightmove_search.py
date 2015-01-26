@@ -51,10 +51,12 @@ def main():
         text_file.write("<p><a href='" + root_url + search_home[1] + "' target='_blank'>This is the original search page</a></p>")
         text_file.write('</div></div>')
         
-        text_file.write('<div class="row"><div class="col-md-4">Title</div>')
-        text_file.write('<div class="col-md-1">Price</div>')
-        text_file.write('<div class="col-md-4">Image</div>')
-        text_file.write('<div class="col-md-3">Found search terms</div></div>')
+        text_file.write('<table class="table table-bordered table-hover">')
+        text_file.write('<thead><tr><th>Title</th>')
+        text_file.write('<th>Price</th>')
+        text_file.write('<th>Image</th>')
+        text_file.write('<th>Found search terms</th></tr></thead>')
+        text_file.write('<tbody>')
 
     # open a browser tab showing the results
     webbrowser.open('file:///' + str(output_dir) + str(output_file), new=2)
@@ -80,7 +82,6 @@ def main():
             for property in properties:
                 property_link = property.find('a')['href']
                 property_links.append(property_link)
-
         i = i + 1
 
     print "Done. We have " + str(len(property_links)) + " properties to search."
@@ -121,12 +122,12 @@ def main():
             property_anchor = '<a href="' + root_url + property_link + '" target="_blank">'
             
             with open(output_path, "a") as text_file:
-                text_file.write('<div class="row">')
-                text_file.write('<div class="col-md-4">' + property_anchor + '<strong>' + title + '</strong><br>' + subtitle + '</a></div>')
-                text_file.write('<div class="col-md-1">' + property_anchor + price + '</a></div>')
-                text_file.write('<div class="col-md-4">' + property_anchor + img + '</a></div>')
-                text_file.write('<div class="col-md-3">' + str(results) + '</div>')
-                text_file.write('</div>')
+                text_file.write('<tr>')
+                text_file.write('<td>' + property_anchor + '<strong>' + title + '</strong><br>' + subtitle + '</a></td>')
+                text_file.write('<td>' + property_anchor + price + '</a></td>')
+                text_file.write('<td>' + property_anchor + img + '</a></td>')
+                text_file.write('<td>' + str(results) + '</td>')
+                text_file.write('</tr>')
 
             property_results.append(result)
             j = j + 1
@@ -136,6 +137,7 @@ def main():
     print "Done. Found " + str(len(property_results)) + " properties. I've written the results to " + output_dir
     
     with open(output_path, "a") as text_file:
+        text_file.write('</tbody></table>')
         text_file.write(foot_html)
 
 def search(text,n):
