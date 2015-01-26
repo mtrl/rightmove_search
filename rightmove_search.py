@@ -50,6 +50,11 @@ def main():
         text_file.write("<h2>Found the following properties with the keywords you are looking for</h2>")
         text_file.write("<p><a href='" + root_url + search_home[1] + "' target='_blank'>This is the original search page</a></p>")
         text_file.write('</div></div>')
+        
+        text_file.write('<div class="row"><div class="col-md-4">Title</div></div>')
+        text_file.write('<div class="row"><div class="col-md-1">Price</div></div>')
+        text_file.write('<div class="row"><div class="col-md-4">Image</div></div>')
+        text_file.write('<div class="row"><div class="col-md-3">Found search terms</div></div>')
 
     # open a browser tab showing the results
     webbrowser.open('file:///' + str(output_dir) + str(output_file), new=2)
