@@ -4,8 +4,16 @@ A python project to allow for keyword searches of rightmove.co.uk.
 
 Be nice and keep the sleep time high. The rightmove servers will block your IP if you hit the site too hard.
 
-## Requirements
+## Use
+
+### Requirements
 Install requirements with `pip install -r requirements.txt`
+
+### Usage
+Set the search_home tuple and output_dir variables to values that are right for you.
+
+Run with
+`python rightmove_search.py`
 
 ## License
 

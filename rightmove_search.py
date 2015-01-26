@@ -7,12 +7,12 @@ from BeautifulSoup import BeautifulSoup
 def main():
 #    search_home = ['10 mile radius Shrewsbury 28k2', '/property-for-sale/find.html?locationIdentifier=REGION%5E1208&maxPrice=280000&minBedrooms=3&displayPropertyType=houses&oldDisplayPropertyType=houses&numberOfPropertiesPerPage=50&radius=10.0&googleAnalyticsChannel=buying']
     search_home = ['north and west of Shrewsbury 4 beds to 375k', '/property-for-sale/find.html?locationIdentifier=USERDEFINEDAREA%5E%7B%22id%22%3A2707198%7D&maxPrice=375000&minBedrooms=4&displayPropertyType=houses&oldDisplayPropertyType=houses&primaryDisplayPropertyType=houses&oldPrimaryDisplayPropertyType=houses&sortType=&numberOfPropertiesPerPage=50']
+    output_dir = "/Users/mark/Dropbox/rightmove_search/"
     
     keywords = ['acre']
     root_url = 'http://www.rightmove.co.uk'
 
     output_file = "property_search_results"
-    output_dir = "/Users/mark/Dropbox/rightmove_search/"
     wait_time = 1 # Pause for x seconds between requests
     user_agent = 'Mozilla/5 (Solaris 10) Gecko'
     headers = { 'User-Agent' : user_agent }
