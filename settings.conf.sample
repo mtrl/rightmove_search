@@ -1,0 +1,4 @@
+# Enter the name of your search (this is used for the HTML report file name) in search_home[0] and the path to your rightmove search in search_home[1]
+search_home = ['north and west of Shrewsbury 4 beds to 375k', '/property-for-sale/find.html?locationIdentifier=USERDEFINEDAREA%5E%7B%22id%22%3A2707198%7D&maxPrice=375000&minBedrooms=4&displayPropertyType=houses&oldDisplayPropertyType=houses&primaryDisplayPropertyType=houses&oldPrimaryDisplayPropertyType=houses&sortType=&numberOfPropertiesPerPage=50']
+# Enter the full path to where you want your report to be saved
+output_dir = "/Users/mark/Dropbox/rightmove_search/"
