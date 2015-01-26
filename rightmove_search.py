@@ -49,7 +49,6 @@ def main():
         text_file.write("<h1>" + search_home[0] + "</h1>")
         text_file.write("<h2>The following property's descriptions contain your search terms</h2>")
         text_file.write("<p><a href='" + root_url + search_home[1] + "' target='_blank'>This is the original search page</a></p>")
-        text_file.write('</div></div>')
         
         text_file.write('<table class="table table-bordered table-hover">')
         text_file.write('<thead><tr><th>Title</th>')
@@ -138,6 +137,7 @@ def main():
     
     with open(output_path, "a") as text_file:
         text_file.write('</tbody></table>')
+        text_file.write('</div></div>')
         text_file.write(foot_html)
 
 def search(text,n):
