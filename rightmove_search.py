@@ -8,12 +8,12 @@ def main():
 #    search_home = ['10 mile radius Shrewsbury 28k2', '/property-for-sale/find.html?locationIdentifier=REGION%5E1208&maxPrice=280000&minBedrooms=3&displayPropertyType=houses&oldDisplayPropertyType=houses&numberOfPropertiesPerPage=50&radius=10.0&googleAnalyticsChannel=buying']
     search_home = ['north and west of Shrewsbury 4 beds to 375k', '/property-for-sale/find.html?locationIdentifier=USERDEFINEDAREA%5E%7B%22id%22%3A2707198%7D&maxPrice=375000&minBedrooms=4&displayPropertyType=houses&oldDisplayPropertyType=houses&primaryDisplayPropertyType=houses&oldPrimaryDisplayPropertyType=houses&sortType=&numberOfPropertiesPerPage=50']
     
-    keywords = ['paddock', 'field', 'acre', 'huge garden', 'large garden']
+    keywords = ['acre']
     root_url = 'http://www.rightmove.co.uk'
 
     output_file = "property_search_results"
     output_dir = "/Users/mark/Dropbox/rightmove_search/"
-    waitSec = 1
+    wait_time = 1 # Pause for x seconds between requests
     user_agent = 'Mozilla/5 (Solaris 10) Gecko'
     headers = { 'User-Agent' : user_agent }
 
@@ -45,8 +45,8 @@ def main():
     for pageUrl in page_urls:
         # Wait a moment so we don't trigger the bot blocker
         print "About to scrape page " + str(i)
-        print "Waiting " + str(waitSec) + " seconds"
-        time.sleep(waitSec)
+        print "Waiting " + str(wait_time) + " seconds"
+        time.sleep(wait_time)
 
         # get the HTML
         request = urllib2.Request(root_url + pageUrl, headers=headers)
@@ -74,8 +74,8 @@ def main():
     print "---"
 
     for property_link in property_links:
-        print "About to search property " + str(i) + ". Waiting " + str(waitSec) + " seconds..."
-        time.sleep(waitSec)
+        print "About to search property " + str(i) + ". Waiting " + str(wait_time) + " seconds..."
+        time.sleep(wait_time)
 
         request = urllib2.Request(root_url + property_link, headers=headers)
         property_html = BeautifulSoup(urllib2.urlopen(request).read())
