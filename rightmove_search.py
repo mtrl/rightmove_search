@@ -127,7 +127,7 @@ def main():
                 text_file.write('<td>' + property_anchor + '<strong>' + title + '</strong><br>' + subtitle + '</a></td>')
                 text_file.write('<td>' + property_anchor + price + '</a></td>')
                 text_file.write('<td>' + property_anchor + img + '</a></td>')
-                text_file.write('<td>' + str(results) + '</td>')
+                text_file.write('<td>' + ", ".join(results) + '</td>')
                 text_file.write('</tr>')
 
             property_results.append(result)
