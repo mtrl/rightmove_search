@@ -4,3 +4,5 @@ search_home = ['north and west of Shrewsbury 4 beds to 375k', '/property-for-sal
 output_dir = "/Users/mark/Dropbox/rightmove_search/"
 # Your search terms in a tuple
 keywords = ['acre']
+# Refresh the browser on finding a new result? 
+refresh_browser_on_result = True

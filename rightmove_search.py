@@ -47,10 +47,10 @@ def main():
     with open(output_path, "w") as text_file:
         #text_file.write('<meta http-equiv="refresh" content="10">')
         text_file.write(head_html)
-        text_file.write('<div class="row"><div class="col-md-12">')
         text_file.write("<h1>" + search_home[0] + "</h1>")
         text_file.write("<h2>The following property's descriptions contain your search terms</h2>")
         text_file.write("<p><a href='" + root_url + search_home[1] + "' target='_blank'>This is the original search page</a></p>")
+        text_file.write("<p>The search terms were <em>" + ", ".join(keywords) + "</em></p>")
         
         text_file.write('<table class="table table-bordered table-hover">')
         text_file.write('<thead><tr><th>Title</th>')
@@ -129,6 +129,9 @@ def main():
                 text_file.write('<td>' + property_anchor + img + '</a></td>')
                 text_file.write('<td>' + str(results) + '</td>')
                 text_file.write('</tr>')
+            if config["refresh_browser_on_result"]:
+                # Refresh the browser
+                webbrowser.open('file:///' + str(output_dir) + str(output_file), new=0)
 
             property_results.append(result)
             j = j + 1
@@ -139,14 +142,16 @@ def main():
     
     with open(output_path, "a") as text_file:
         text_file.write('</tbody></table>')
-        text_file.write('</div></div>')
         text_file.write(foot_html)
         
     # Create the HTML index file
     results_files = [ f for f in listdir(output_dir) if isfile(join(output_dir,f)) ]
     with open(output_dir + "index.html", "w") as text_file:
+        text_file.write(head_html)
         for result_file in results_files:
-            text_file.write('<p><a href="' + result_file + '">' + result_file + "</a></p>")
+            if not result_file.startswith('.'):
+                text_file.write('<p><a href="' + result_file + '">' + result_file + "</a></p>")
+        text_file.write(foot_html)
 
 def search(text,n):
     #Searches for text, and retrieves n words either side of the text, which are retuned seperatly
