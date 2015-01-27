@@ -146,7 +146,7 @@ def main():
     with open(output_dir + "index.html", "w") as text_file:
         text_file.write(head_html)
         for result_file in results_files:
-            if not result_file.startswith('.'):
+            if not result_file.startswith('.') and not result_file == "index.html":
                 text_file.write('<p><a href="' + result_file + '">' + result_file + "</a></p>")
         text_file.write(foot_html)
 
