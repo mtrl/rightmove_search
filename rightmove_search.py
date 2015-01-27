@@ -59,6 +59,7 @@ def main():
         text_file.write('<th>Found search terms</th></tr></thead>')
         text_file.write('<tbody>')
 
+    create_index_file(output_dir, head_html, foot_html)
     # open a browser tab showing the results
     webbrowser.open('file:///' + str(output_dir) + str(output_file), new=2)
 
@@ -141,7 +142,7 @@ def main():
         text_file.write('</tbody></table>')
         text_file.write(foot_html)
         
-    # Create the HTML index file
+def create_index_file(output_dir, head_html, foot_html):
     results_files = [ f for f in listdir(output_dir) if isfile(join(output_dir,f)) ]
     with open(output_dir + "index.html", "w") as text_file:
         text_file.write(head_html)
