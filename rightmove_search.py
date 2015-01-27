@@ -129,9 +129,6 @@ def main():
                 text_file.write('<td>' + property_anchor + img + '</a></td>')
                 text_file.write('<td>' + str(results) + '</td>')
                 text_file.write('</tr>')
-            if config["refresh_browser_on_result"]:
-                # Refresh the browser
-                webbrowser.open('file:///' + str(output_dir) + str(output_file), new=0)
 
             property_results.append(result)
             j = j + 1
