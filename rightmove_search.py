@@ -77,13 +77,17 @@ def main():
 
         # now we go through each page of results and get the property results one at a time
         properties = page_html.findAll('ol',{'id':'summaries'})
+        
+        print str(len(properties))
 
         if len(properties) > 0:
-            properties = properties[0].findAll('div', {'class':'photoswrapper'})
+            properties = properties[0].findAll('div', {'class':'details clearfix'})
 
             for property in properties:
                 property_link = property.find('a')['href']
                 property_links.append(property_link)
+            
+            print str(len(property_links))
         i = i + 1
 
     print "Done. We have " + str(len(property_links)) + " properties to search."
