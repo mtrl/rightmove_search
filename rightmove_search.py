@@ -11,7 +11,7 @@ def main():
     # Import settings
     config = {}
     execfile("settings.conf", config)
-    
+
     search_home = config["search_home"]
     output_dir = config["output_dir"]
     keywords = config["keywords"]
@@ -21,7 +21,7 @@ def main():
     wait_time = 1 # Pause for x seconds between requests
     user_agent = 'Mozilla/5 (Solaris 10) Gecko'
     headers = { 'User-Agent' : user_agent }
-    
+
     copy_templates(output_dir)
     output_file = output_file + "_" + sanitise_filename(str(search_home[0])) + ".html"
     output_path = output_dir + output_file
@@ -34,13 +34,14 @@ def main():
     page_links = paging_div[0].findAll('a')
 
     page_urls = [search_home[1]]
+    
     for page_link in page_links:
         page_urls.append(page_link['href'])
-    
+
     with open("template/head.html", "r") as myfile:
         head_html = myfile.read().replace('\n', '')
         head_html = head_html.replace("[[TITLE]]", search_home[0])
-        
+
     with open("template/foot.html", "r") as myfile:
         foot_html = myfile.read().replace('\n', '')
 
@@ -51,7 +52,7 @@ def main():
         text_file.write("<h2>The following property's descriptions contain your search terms</h2>")
         text_file.write("<p><a href='" + root_url + search_home[1] + "' target='_blank'>This is the original search page</a></p>")
         text_file.write("<p>The search terms were <em>" + ", ".join(keywords) + "</em></p>")
-        
+
         text_file.write('<table class="table table-bordered table-hover">')
         text_file.write('<thead><tr><th>Title</th>')
         text_file.write('<th>Price</th>')
@@ -77,7 +78,7 @@ def main():
 
         # now we go through each page of results and get the property results one at a time
         properties = page_html.findAll('ol',{'id':'summaries'})
-        
+
         print str(len(properties))
 
         if len(properties) > 0:
@@ -86,7 +87,7 @@ def main():
             for property in properties:
                 property_link = property.find('a')['href']
                 property_links.append(property_link)
-            
+
             print str(len(property_links))
         i = i + 1
 
@@ -126,7 +127,7 @@ def main():
             title = str(property_html.find('h1', { 'class': 'fs-22'}).text)
             subtitle = str(property_html.find('div', { 'class': 'property-header-bedroom-and-price'}).find('address').text)
             property_anchor = '<a href="' + root_url + property_link + '" target="_blank">'
-            
+
             with open(output_path, "a") as text_file:
                 text_file.write('<tr>')
                 text_file.write('<td>' + property_anchor + '<strong>' + title + '</strong><br>' + subtitle + '</a></td>')
@@ -141,11 +142,11 @@ def main():
 
     print "---"
     print "Done. Found " + str(len(property_results)) + " properties. I've written the results to " + output_dir
-    
+
     with open(output_path, "a") as text_file:
         text_file.write('</tbody></table>')
         text_file.write(foot_html)
-        
+
 def create_index_file(output_dir, head_html, foot_html):
     results_files = [ f for f in listdir(output_dir) if isfile(join(output_dir,f)) ]
     with open(output_dir + "index.html", "w") as text_file:
@@ -160,7 +161,7 @@ def search(text,n):
     word = r"\W*([\w]+)"
     groups = re.search(r'{}\W*{}{}'.format(word*n,'place',word*n),t).groups()
     return groups[:n],groups[n:]
-    
+
 def sanitise_filename(filename):
     return "".join([c for c in filename if c.isalpha() or c.isdigit() or c==' ']).rstrip().replace(" ", "_")
 
