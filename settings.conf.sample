@@ -3,4 +3,5 @@ search_home = ['north and west of Shrewsbury 4 beds to 375k', '/property-for-sal
 # Enter the full path to where you want your report to be saved
 output_dir = "/Users/mark/Dropbox/rightmove_search/"
 # Your search terms in a tuple
+alert_sound_file = 'wav/slurp.wav'
 keywords = ['acre']
