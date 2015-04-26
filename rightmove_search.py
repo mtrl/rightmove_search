@@ -7,6 +7,7 @@ import time
 import hashlib
 import webbrowser
 from BeautifulSoup import BeautifulSoup
+import sys
 
 def main():
     # Import settings
@@ -69,12 +70,13 @@ def main():
 
     i = 1
     property_links = []
+    print "Scraping results page",
     for pageUrl in page_urls:
         # Wait a moment so we don't trigger the bot blocker
-        print "About to scrape page " + str(i)
-        print "Waiting " + str(wait_time) + " seconds"
         time.sleep(wait_time)
-
+        print (str(i)),
+        #print "Waiting " + str(wait_time) + " seconds"
+        sys.stdout.flush()
         # get the HTML
         request = urllib2.Request(root_url + pageUrl, headers=headers)
         page_html = BeautifulSoup(urllib2.urlopen(request).read())
@@ -82,7 +84,7 @@ def main():
         # now we go through each page of results and get the property results one at a time
         properties = page_html.findAll('ol',{'id':'summaries'})
 
-        print str(len(properties))
+        #print str(len(properties))
 
         if len(properties) > 0:
             properties = properties[0].findAll('div', {'class':'details clearfix'})
@@ -91,20 +93,21 @@ def main():
                 property_link = property.find('a')['href']
                 property_links.append(property_link)
 
-            print str(len(property_links))
+            #print str(len(property_links))
         i = i + 1
-
+    print ""
     print "Done. We have " + str(len(property_links)) + " properties to search."
 
     # now we go through each property and search for keywords
     property_results = []
     i = 1
     j = 1
-    print "Parsing properties"
-    print "---"
+    print "Searching properties for keywords"
 
+    print("Searching property "),
     for property_link in property_links:
-        print "About to search property " + str(i) + ". Waiting " + str(wait_time) + " seconds..."
+        print (str(i)),
+        sys.stdout.flush()
         time.sleep(wait_time)
 
         request = urllib2.Request(root_url + property_link, headers=headers)
@@ -123,7 +126,7 @@ def main():
                 results.append(word)
 
         if(len(results) > 0):
-            print "WOOHOOO! I've found a property with keywords " + str(results) + " :)"
+            print(":)"),
             # Play the alert sound
             pygame.mixer.music.play()
             while pygame.mixer.music.get_busy() == True:
