@@ -1,5 +1,5 @@
 import urllib2
-import pygame
+#import pygame
 from os import listdir
 from os.path import isfile, join
 import shutil
@@ -14,7 +14,7 @@ def main():
     config = {}
     execfile("settings.conf", config)
 
-    load_alert_sound(config["alert_sound_file"])
+    #load_alert_sound(config["alert_sound_file"])
 
     search_home = config["search_home"]
     output_dir = config["output_dir"]
@@ -128,9 +128,9 @@ def main():
         if(len(results) > 0):
             print(":)"),
             # Play the alert sound
-            pygame.mixer.music.play()
-            while pygame.mixer.music.get_busy() == True:
-                continue
+            #pygame.mixer.music.play()
+            #while pygame.mixer.music.get_busy() == True:
+            #    continue
 
             result = [root_url + property_link, img, results]
             # Get property info
@@ -158,9 +158,9 @@ def main():
         text_file.write('</tbody></table>')
         text_file.write(foot_html)
 
-def load_alert_sound(alert_sound_file):
-    pygame.mixer.init()
-    pygame.mixer.music.load(alert_sound_file)
+#def load_alert_sound(alert_sound_file):
+    #pygame.mixer.init()
+    #pygame.mixer.music.load(alert_sound_file)
 
 
 def create_index_file(output_dir, head_html, foot_html):
