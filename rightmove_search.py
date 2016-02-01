@@ -30,7 +30,7 @@ def main():
     output_file = output_file + "_" + sanitise_filename(str(search_home[0])) + ".html"
     output_path = output_dir + output_file
 
-    request = urllib2.Request(root_url + search_home[1], headers=headers)
+    request = urllib2.Request(root_url + search_home[1] + "&numberOfPropertiesPerPage=50", headers=headers)
     search_html = urllib2.urlopen(request).read()
     search_soup = BeautifulSoup(search_html);
 
